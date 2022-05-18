@@ -8,7 +8,7 @@ import commentController from "./controller/comment-controller.js";
 import creatorController from "./controller/creator-controller.js";
 import podcastController from "./controller/podcast-controller.js";
 import reviewController from "./controller/review-controller.js";
-const dbConfig = require("../config/db.config.js");
+import dbConfig from "./config/db.config.js";
 const app = express();
 app.set('trust proxy', 1);
 let sess = {
