@@ -8,6 +8,7 @@ import commentController from "./controller/comment-controller.js";
 import creatorController from "./controller/creator-controller.js";
 import podcastController from "./controller/podcast-controller.js";
 import reviewController from "./controller/review-controller.js";
+const dbConfig = require("../config/db.config.js");
 const app = express();
 app.set('trust proxy', 1);
 let sess = {
@@ -22,15 +23,15 @@ if (app.get('env') === 'production') {
 
 app.use(session(sess));
 app.use(express.json());
-mongoose.connect('mongodb://localhost:27017/podcastapp');
+mongoose.connect(dbConfig.connection_string);
 app.get('/', (req, res) =>
 {res.send('Welcome to Full Stack Development!')})
 
-app.use(cors({
-  credentials: true,
-  origin: 'http://localhost:3000',
-  headers: ['Authorization', 'X-Requested-With', 'Content-Type']
-}));
+// app.use(cors({
+//   credentials: true,
+//   origin: 'http://localhost:3000',
+//   headers: ['Authorization', 'X-Requested-With', 'Content-Type']
+// }));
 
 userController(app);
 commentController(app);
@@ -44,3 +45,14 @@ const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
+
+// Note: code for mongodb connection, may not be necessary but storing here in case
+// const { MongoClient, ServerApiVersion } = require('mongodb');
+// const uri = "mongodb+srv://hollylovejoy:<password>@webdev-cluster.vug6c.mongodb.net/?retryWrites=true&w=majority";
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+// client.connect(err => {
+//   const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   client.close();
+// });
+
