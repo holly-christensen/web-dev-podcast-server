@@ -1,8 +1,8 @@
 {
-  "name": "web-dev-final-project",
+  "name": "web-dev-podcast-server",
   "version": "1.0.0",
   "description": "Final project for CS4550. Podcast sharing, rating and reviewing app.",
-  "main": "app/server.js",
+  "main": "app/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
